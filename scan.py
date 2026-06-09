@@ -15,7 +15,7 @@ def send_email(content):
     msg['To'] = to
     
     # 这里使用的是 QQ 邮箱的 SMTP 服务器，如果你用 163 请将 smtp.qq.com 改为 smtp.163.com
-    server = smtplib.SMTP_SSL('smtp.qq.com', 465)
+    server = smtplib.SMTP_SSL('838517023.qq.com', 465)
     server.login(user, password)
     server.sendmail(user, [to], msg.as_string())
     server.quit()
