@@ -43,11 +43,13 @@ def run():
             
     # 3. 最终结果推送
     if results and push_key:
-        msg = "\n".join(results)
-        requests.post(f"https://sctapi.ftqq.com/{push_key}.send", 
-                      data={"title": "A股整理监控", "desp": msg})
+        print("准备发送推送...")
+        res = requests.post(f"https://sctapi.ftqq.com/{push_key}.send", 
+                      data={"title": "A股整理监控", "desp": "\n".join(results)})
+        print(f"推送接口返回状态码: {res.status_code}")
+        print(f"推送接口返回内容: {res.text}")
     else:
-        print("今日未发现符合条件的股票")
+        print(f"未满足推送条件，results长度: {len(results)}, push_key是否存在: {bool(push_key)}")
 
 if __name__ == "__main__":
     run()
